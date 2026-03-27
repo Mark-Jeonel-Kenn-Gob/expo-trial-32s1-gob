@@ -4,7 +4,11 @@ import { StyleSheet, Text, View } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hawak mo ang BEAT!</Text>
+      <Text style={styles.header}>Team Members:</Text>
+      <Text>Clavines, Miguel Arwyn</Text>
+      <Text>Gob, Mark Jeonel Kenn</Text>
+      <Text>Latonero, Vince Phillip</Text>
+      <Text>Peñas, John Patrick</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -16,5 +20,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  header: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
   },
 });
