@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View, TextInput, Button } from "react-native";
+import { StyleSheet, View, TextInput, Pressable, Text } from "react-native";
 
 function GoalInput(props) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -10,7 +10,7 @@ function GoalInput(props) {
 
   function addGoalHandler() {
     props.onAddGoal(enteredGoalText);
-    setEnteredGoalText(""); // Resets the text input field
+    setEnteredGoalText("");
   }
 
   return (
@@ -23,8 +23,17 @@ function GoalInput(props) {
         value={enteredGoalText}
       />
       <View style={styles.buttonContainer}>
-        {/* 4. Bound to the local addGoalHandler */}
-        <Button title="Add" color="#634B66" onPress={addGoalHandler} />
+        {/* TASK 2 & 3: Replaced <Button> with <Pressable> */}
+        <Pressable
+          onPress={addGoalHandler}
+          android_ripple={{ color: "#9590A8" }} // Android ripple effect
+          style={({ pressed }) => [
+            styles.customButton,
+            pressed && styles.pressedButton, // Dynamic styling when pressed
+          ]}
+        >
+          <Text style={styles.buttonText}>Add</Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -54,4 +63,27 @@ const styles = StyleSheet.create({
     borderColor: "#BBCBCB",
   },
   buttonContainer: { width: "20%" },
+
+  // New Styles for the Pressable
+  customButton: {
+    backgroundColor: "#634B66", // Vintage Grape
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 2, // Android shadow
+    shadowColor: "#18020C", // iOS shadow
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+  },
+  pressedButton: {
+    opacity: 0.7, // Gives visual feedback on iOS/Android when tapped
+    backgroundColor: "#18020C", // Changes to Coffee Bean on press
+  },
+  buttonText: {
+    color: "#E5FFDE", // Frosted Mint
+    fontWeight: "bold",
+    fontSize: 16,
+  },
 });
